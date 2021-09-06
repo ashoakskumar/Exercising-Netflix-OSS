@@ -1,0 +1,57 @@
+Containers & K8s:-
+refer - https://www.youtube.com/watch?v=DsHcfoRyDsM&list=PLTyWtrsGknYf_Oee7YOvom5Ev0F3-E2zB&index=3
+1. it is lightweight, standalone, and executable packaage of a piece of s/w that include everything needs to run it.
+2. Traditional VM - it contains (think of from bottom up) server/hardware -> Host OS -> Hypervisor (used to create VM) -> Application to be deployed with guest OS.
+3. Disadvandate on the traditional VM is unnecessay waste of memory space for the OS in a hypervisor, Cost of each OS, complex configuration.
+4. Container will have server -> Host os -> docker engine -> container(within that app will reside) many.
+5. Docker will convert the executable package to image and store in the container.
+6. if the server has multiple container, the way to connect multiple container with configuration , dynamic route and load balancer is achieved through orchestration.
+7. Kubernetes is the container orchestration platform, cloud native  that splits the application into several logical units for easy mgts & discovery, it is called Pods
+8. It consist of pods -> it is a node -> node act as a individual server.Pods can hold single or multiple conainer(image). 
+9. Scaling - It helps to scale the container horizantaly and can be configured internally.
+10. Self Healing - it restart the container if it is down.
+12 . Load balancing & Service discovery - K8s gives DNS configuration to cluster & Pods that contains multiple containers , which can be automatically load balanced.
+13. Automated rollouts & Rollback - During deployment of containers for any failures or consquences of deployment should happen as phase wise, k8s can do rollouts or roll backs based
+	on inputs & output app response.
+14. Batch Execution - Can run the app on schedule base.
+15. Configuration Managements - with the help of yml file , we can configure container by giving details such as port, loadbalancer, secrets, deployment mode and scaling replicas.
+16. Kubernetes Architecture - By default and after installation, it creates you a cluster infrastructure which has	
+	16.1 - kubernetes master has components
+			16.1.1 - Api server - any intercation with kuber netes cluster is thru the api server using kubectl command line interface
+			16.1.2 - scheduler - to schedule task to worker node
+			16.1.2 - etcd - key-value store. storage pplace for k8s contains info abt cluster nodes such as metadata, name of nodes
+			16.1.3 - controller manager - its like a daemon process which will reconcile the health of each nodes based info present in the etcd.
+	16.2 - kubernetes slave or nodes or minions or worker node - 
+			16.2.1	- kube proxy - which has n/w proxy layer across to talk with processor insid this worker node, the node allows you to interact with containers which are running inside this nodes, act as load balancer.
+			16.2.2 - docker engine- it is a runtime to host different container inside nodes.
+			16.2.3 - kubelets - its a another daemon process to interact with master node and all the task will be retreived using kubelet and kubelet goes inside each node and execute it		
+								inorder to get the secification of configuration for this slave node , kubelet goes to api server and retrieves the specification instruction and create		
+								this container run time inside the node.	
+			16.2.4 - Pods - Every deployment in k8s cluster runs in the pod. it consist of different component
+					16.2.4.1 - IP address - every pod has been assigned by unique Ip address
+					16.2.4.2 - Volume - space memory used with in it
+					16.2.4.3 - docker - its a runtime to run the instances
+			16.2.5 - Inside cluster there may be multiple nodes. inside nodes there may be multiple pods, and inside pods there may be multiple docker containers
+17. How to deploy an appln inside a pod - is thru yaml file uploaded with deployment and service kind so these are called work load.
+18. An client can access the POD using service, It has DNS, app name & routing information, available in label selector. When an appn runs on three instances then this service will
+	do load balancing.so every deployment of an appln would required an service.
+19. A Kubernetes Deployment is used to tell Kubernetes how to create or modify instances of the pods that hold a containerized application
+20. Kubectl commands-
+	20.1 - minikube status - to know the status
+			type: Control Plane
+			host: Stopped
+			kubelet: Stopped
+			apiserver: Stopped
+			kubeconfig: Stopped
+	20.2 - minikube start - to start minikube server on hypervision or docker installed
+	20.3 - kubectl get deployment - get all deployment added to this cluster
+	20.4 - kubectl get all - list all deployment, pods, services & replica sets
+	20.5 - kubectl get pod - to list the pods in the cluster
+	20.6 - kubectl get service - to list the service in the cluster
+	20.7 - kubectl -h - to see the list of commands
+	20.8 - kubeclt get replicaset - to see the number of replicas available for each service instances
+	20.9 - kubectl describe deployment <deployment-name> - to see the description of deployment
+	20.10 - kubectl logs myalphine-dply-5c7c454dc-d482k <pod name> - to see the log of pods
+21. Command to Create deployemnt of images in k8s. - kubectl create deployment <myalphine-dply--name> --image=docker.io/ashoaks/myalpine
+22. command to edit deployment - kubectl edit deployment 
+23. 

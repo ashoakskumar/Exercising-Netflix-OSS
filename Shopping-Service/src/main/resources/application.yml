@@ -1,0 +1,9 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:      defaultZone: http://localhost:5555/eureka
+  instance:    hostname: localhost
+server:  port: 9999
+spring:  application:    name: SHOPPING-SERVICE   
+   

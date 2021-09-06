@@ -1,0 +1,14 @@
+server:
+  port: 1002
+spring:  cloud:    gateway:      routes:      - id: employeeModule
+        uri: http://localhost:1000/
+        predicates:
+        - Path=/employee/**
+      - id: consumerModule
+        uri: http://localhost:1001/
+        predicates:
+        - Path=/consumer/** 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8083/eureka          

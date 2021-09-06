@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: FIRST-SERVICE
+server:  port: 1000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5555/eureka

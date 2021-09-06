@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: XYZ-SERVICE
+server:  port: 6688
+pingserver:
+   ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:8000,localhost:8001,localhost:8002
+    ServerListRefreshInterval: 1000
+eureka:  instance:    appname: XYZ-SERVICE
+  client:    fetch-registry: true
+    register-with-eureka: true
+    service-url:      defaultZone: http://localhost:5555/eureka  
